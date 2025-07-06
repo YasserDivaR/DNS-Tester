@@ -33,8 +33,8 @@
             this.label1 = new System.Windows.Forms.Label();
             this.panel2 = new System.Windows.Forms.Panel();
             this.panel3 = new System.Windows.Forms.Panel();
-            this.labelUpdateState = new System.Windows.Forms.Label();
             this.button1 = new System.Windows.Forms.Button();
+            this.labelUpdateState = new System.Windows.Forms.Label();
             this.button2 = new System.Windows.Forms.Button();
             this.textBox1 = new System.Windows.Forms.TextBox();
             this.panel1.SuspendLayout();
@@ -87,6 +87,16 @@
             this.panel3.Size = new System.Drawing.Size(469, 77);
             this.panel3.TabIndex = 3;
             // 
+            // button1
+            // 
+            this.button1.Location = new System.Drawing.Point(11, 8);
+            this.button1.Name = "button1";
+            this.button1.Size = new System.Drawing.Size(137, 34);
+            this.button1.TabIndex = 0;
+            this.button1.Text = "Check Update";
+            this.button1.UseVisualStyleBackColor = true;
+            this.button1.Click += new System.EventHandler(this.button1_Click);
+            // 
             // labelUpdateState
             // 
             this.labelUpdateState.AutoSize = true;
@@ -95,16 +105,6 @@
             this.labelUpdateState.Size = new System.Drawing.Size(60, 20);
             this.labelUpdateState.TabIndex = 3;
             this.labelUpdateState.Text = "Status : ";
-            // 
-            // button1
-            // 
-            this.button1.Location = new System.Drawing.Point(11, 8);
-            this.button1.Name = "button1";
-            this.button1.Size = new System.Drawing.Size(137, 34);
-            this.button1.TabIndex = 1;
-            this.button1.Text = "Check Update";
-            this.button1.UseVisualStyleBackColor = true;
-            this.button1.Click += new System.EventHandler(this.button1_Click);
             // 
             // button2
             // 
@@ -126,7 +126,7 @@
             this.textBox1.RightToLeft = System.Windows.Forms.RightToLeft.Yes;
             this.textBox1.ScrollBars = System.Windows.Forms.ScrollBars.Vertical;
             this.textBox1.Size = new System.Drawing.Size(447, 408);
-            this.textBox1.TabIndex = 0;
+            this.textBox1.TabIndex = 5;
             this.textBox1.Text = resources.GetString("textBox1.Text");
             // 
             // Form2

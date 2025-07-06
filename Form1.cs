@@ -22,21 +22,17 @@ namespace WindowsFormsApp2
         private void InitializeListView()
         {
             // Initialize the ListView
-
-            //listViewResults.Dock = DockStyle.Fill;
             listViewResults.View = View.Details;
             listViewResults.FullRowSelect = true;
             listViewResults.GridLines = true;
 
             // Add columns to the ListView
+
             listViewResults.Columns.Add("Name", -2, HorizontalAlignment.Left);
-            listViewResults.Columns.Add("DNS1", -2, HorizontalAlignment.Left);
-            listViewResults.Columns.Add("DNS2", -2, HorizontalAlignment.Left);
-            listViewResults.Columns.Add("Ping DNS1", -2, HorizontalAlignment.Left);
-            listViewResults.Columns.Add("Ping DNS2", -2, HorizontalAlignment.Left);
-            /////////////////////////////
-            ///
-            //listViewResults.ItemSelectionChanged += ListViewResults_ItemSelectionChanged;
+            listViewResults.Columns.Add("DNS 1", -2, HorizontalAlignment.Left);
+            listViewResults.Columns.Add("DNS 2", -2, HorizontalAlignment.Left);
+            listViewResults.Columns.Add("DNS 1 Latency", -2, HorizontalAlignment.Center);
+            listViewResults.Columns.Add("DNS 2 Latency", -2, HorizontalAlignment.Center);
         }
 
         private void Form1_Load(object sender, EventArgs e)
@@ -74,7 +70,6 @@ namespace WindowsFormsApp2
                         }
                     }
                 }
-                //  listViewResults.AutoResizeColumns(ColumnHeaderAutoResizeStyle.HeaderSize);
                 listViewResults.Columns[0].Width = 255;
                 listViewResults.Columns[1].Width = 145;
                 listViewResults.Columns[2].Width = 145;
@@ -90,7 +85,7 @@ namespace WindowsFormsApp2
             listViewResults.Items.Clear();
 
             // Specify the path to your text file
-            string filePath = "DNS_List.txt"; //    Replace with your file path
+            string filePath = "DNS_List.txt"; // Replace with your file path
 
             if (File.Exists(filePath))
             {
@@ -104,40 +99,48 @@ namespace WindowsFormsApp2
                 progressBar1.Value = 0;
                 progressBar1.Step = 1;
 
-                foreach (string line in lines)
+                await Task.Run(() =>
                 {
-                    // Split the line into name and DNS parts
-                    string[] parts = line.Split(new[] { '=' }, 2);
-                    if (parts.Length == 2)
+                    Parallel.ForEach(lines, line =>
                     {
-                        string name = parts[0].Trim();
-                        string[] dnsParts = parts[1].Split(new[] { ',' }, 2);
-
-                        if (dnsParts.Length == 2)
+                        // Split the line into name and DNS parts
+                        string[] parts = line.Split(new[] { '=' }, 2);
+                        if (parts.Length == 2)
                         {
-                            string dns1 = dnsParts[0].Trim();
-                            string dns2 = dnsParts[1].Trim();
+                            string name = parts[0].Trim();
+                            string[] dnsParts = parts[1].Split(new[] { ',' }, 2);
 
-                            // Perform async ping tests
-                            string pingDns1 = await PingAddressAsync(dns1);
-                            string pingDns2 = await PingAddressAsync(dns2);
+                            if (dnsParts.Length == 2)
+                            {
+                                string dns1 = dnsParts[0].Trim();
+                                string dns2 = dnsParts[1].Trim();
 
-                            // Add the data to the ListView
-                            ListViewItem item = new ListViewItem(name);
-                            item.SubItems.Add(dns1);
-                            item.SubItems.Add(dns2);
-                            item.SubItems.Add(pingDns1);
-                            item.SubItems.Add(pingDns2);
-                            listViewResults.Items.Add(item);
+                                // Perform async ping tests
+                                string pingDns1 = PingAddressAsync(dns1).Result;
+                                string pingDns2 = PingAddressAsync(dns2).Result;
 
-                            // Update the ProgressBar
-                            progressBar1.PerformStep();
+                                // Add the data to the ListView
+                                ListViewItem item = new ListViewItem(name);
+                                item.SubItems.Add(dns1);
+                                item.SubItems.Add(dns2);
+                                item.SubItems.Add(pingDns1);
+                                item.SubItems.Add(pingDns2);
+
+                                // Update the ListView on the UI thread
+                                Invoke(new Action(() =>
+                                {
+                                    listViewResults.Items.Add(item);
+                                    progressBar1.PerformStep();
+                                    lbl_status.Text = "Status : " + progressBar1.Value.ToString() + " Item Checked";
+                                }));
+                            }
                         }
-                    }
-                }
+                    });
+                });
 
                 // Hide the ProgressBar after completion
-                //progressBar1.Visible = false;
+                progressBar1.Visible = false;
+                button4.Enabled = true;
             }
             else
             {
@@ -165,7 +168,8 @@ namespace WindowsFormsApp2
             }
             catch (Exception ex)
             {
-                return $"Error ({ex.Message})";
+                // return $"Error ({ex.Message})";
+                return "Failed";
             }
         }
 
@@ -286,7 +290,7 @@ namespace WindowsFormsApp2
 
         private void listViewResults_ColumnClick(object sender, ColumnClickEventArgs e)
         {
-            if (e.Column == 3) // "Ping DNS1" column
+            if (e.Column == 3) // "DNS 1 Latency" column
             {
                 // Sort the ListView by the "Ping DNS 1" column
                 listViewResults.ListViewItemSorter = new PingDnsComparer();
@@ -526,11 +530,36 @@ namespace WindowsFormsApp2
 
             await DownloadFileAsync(fileUrl, filePath);
             LoadFileIntoListView(filePath);
+            lbl_status.Text = "Status : Update DNS List successfully";
         }
 
         private void button3_Click(object sender, EventArgs e)
         {
             new Form2().ShowDialog();
+        }
+
+        private void button4_Click(object sender, EventArgs e)
+        {
+            // Randomly select a row for DNS1 from the top 20 rows
+            Random random = new Random();
+            int randomIndexDns1 = random.Next(0, 20);
+            string dns1 = listViewResults.Items[randomIndexDns1].SubItems[1].Text;
+
+            // Randomly select a row for DNS2 from the top 20 rows (different from DNS1)
+            int randomIndexDns2 = random.Next(0, 20);
+            while (randomIndexDns2 == randomIndexDns1)
+            {
+                randomIndexDns2 = random.Next(0, 20);
+            }
+            string dns2 = listViewResults.Items[randomIndexDns2].SubItems[2].Text;
+
+            // Display the DNS values in both text boxes
+            textBoxDns1.Text = dns1;
+            textBoxDns2.Text = dns2;
+            if (textBoxDns2.Text == "")
+            {
+                textBoxDns2.Text = "1.1.1.1";
+            }
         }
     }
 }

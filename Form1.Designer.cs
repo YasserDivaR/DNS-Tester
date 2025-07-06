@@ -40,9 +40,11 @@
             this.toolStripMenuItem4 = new System.Windows.Forms.ToolStripMenuItem();
             this.toolStripMenuItem5 = new System.Windows.Forms.ToolStripMenuItem();
             this.panel1 = new System.Windows.Forms.Panel();
+            this.button4 = new System.Windows.Forms.Button();
+            this.imageList1 = new System.Windows.Forms.ImageList(this.components);
+            this.button3 = new System.Windows.Forms.Button();
             this.button1 = new System.Windows.Forms.Button();
             this.button2 = new System.Windows.Forms.Button();
-            this.linkLabel1 = new System.Windows.Forms.LinkLabel();
             this.label3 = new System.Windows.Forms.Label();
             this.label2 = new System.Windows.Forms.Label();
             this.label1 = new System.Windows.Forms.Label();
@@ -50,12 +52,12 @@
             this.textBoxDns1 = new System.Windows.Forms.TextBox();
             this.textBoxDns2 = new System.Windows.Forms.TextBox();
             this.Check_DNS = new System.Windows.Forms.Button();
+            this.linkLabel1 = new System.Windows.Forms.LinkLabel();
             this.panel2 = new System.Windows.Forms.Panel();
-            this.textBox1 = new System.Windows.Forms.TextBox();
-            this.progressBar1 = new System.Windows.Forms.ProgressBar();
             this.panel3 = new System.Windows.Forms.Panel();
             this.lbl_status = new System.Windows.Forms.Label();
-            this.button3 = new System.Windows.Forms.Button();
+            this.textBox1 = new System.Windows.Forms.TextBox();
+            this.progressBar1 = new System.Windows.Forms.ProgressBar();
             this.contextMenuStrip1.SuspendLayout();
             this.panel1.SuspendLayout();
             this.panel2.SuspendLayout();
@@ -152,7 +154,8 @@
             // 
             // panel1
             // 
-            this.panel1.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(33)))), ((int)(((byte)(150)))), ((int)(((byte)(243)))));
+            this.panel1.BackColor = System.Drawing.SystemColors.Control;
+            this.panel1.Controls.Add(this.button4);
             this.panel1.Controls.Add(this.button3);
             this.panel1.Controls.Add(this.button1);
             this.panel1.Controls.Add(this.button2);
@@ -171,46 +174,81 @@
             this.panel1.TabIndex = 13;
             this.panel1.Paint += new System.Windows.Forms.PaintEventHandler(this.panel1_Paint);
             // 
+            // button4
+            // 
+            this.button4.Enabled = false;
+            this.button4.ImageAlign = System.Drawing.ContentAlignment.MiddleRight;
+            this.button4.ImageIndex = 4;
+            this.button4.ImageList = this.imageList1;
+            this.button4.Location = new System.Drawing.Point(200, 23);
+            this.button4.Name = "button4";
+            this.button4.Size = new System.Drawing.Size(130, 40);
+            this.button4.TabIndex = 24;
+            this.button4.Text = "Auto Select";
+            this.button4.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            this.button4.UseVisualStyleBackColor = true;
+            this.button4.Click += new System.EventHandler(this.button4_Click);
+            // 
+            // imageList1
+            // 
+            this.imageList1.ImageStream = ((System.Windows.Forms.ImageListStreamer)(resources.GetObject("imageList1.ImageStream")));
+            this.imageList1.TransparentColor = System.Drawing.Color.Transparent;
+            this.imageList1.Images.SetKeyName(0, "icons8-bust-in-silhouette-48.png");
+            this.imageList1.Images.SetKeyName(1, "icons8-check-48 (1).png");
+            this.imageList1.Images.SetKeyName(2, "icons8-check-48.png");
+            this.imageList1.Images.SetKeyName(3, "icons8-counterclockwise-arrows-48.png");
+            this.imageList1.Images.SetKeyName(4, "icons8-random-48.png");
+            // 
+            // button3
+            // 
+            this.button3.ImageAlign = System.Drawing.ContentAlignment.MiddleRight;
+            this.button3.ImageIndex = 0;
+            this.button3.ImageList = this.imageList1;
+            this.button3.Location = new System.Drawing.Point(379, 23);
+            this.button3.Margin = new System.Windows.Forms.Padding(4, 3, 4, 3);
+            this.button3.Name = "button3";
+            this.button3.Size = new System.Drawing.Size(130, 40);
+            this.button3.TabIndex = 23;
+            this.button3.Text = "About App";
+            this.button3.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            this.button3.UseVisualStyleBackColor = true;
+            this.button3.Click += new System.EventHandler(this.button3_Click);
+            // 
             // button1
             // 
+            this.button1.ImageAlign = System.Drawing.ContentAlignment.MiddleRight;
+            this.button1.ImageIndex = 3;
+            this.button1.ImageList = this.imageList1;
             this.button1.Location = new System.Drawing.Point(13, 83);
             this.button1.Margin = new System.Windows.Forms.Padding(4, 3, 4, 3);
             this.button1.Name = "button1";
             this.button1.Size = new System.Drawing.Size(130, 40);
             this.button1.TabIndex = 22;
-            this.button1.Text = "Update DNS List";
+            this.button1.Text = "Update List";
+            this.button1.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
             this.button1.UseVisualStyleBackColor = true;
             this.button1.Click += new System.EventHandler(this.button1_Click_3);
             // 
             // button2
             // 
             this.button2.Enabled = false;
-            this.button2.FlatStyle = System.Windows.Forms.FlatStyle.System;
+            this.button2.ImageAlign = System.Drawing.ContentAlignment.MiddleRight;
+            this.button2.ImageIndex = 1;
+            this.button2.ImageList = this.imageList1;
             this.button2.Location = new System.Drawing.Point(379, 83);
             this.button2.Margin = new System.Windows.Forms.Padding(4, 3, 4, 3);
             this.button2.Name = "button2";
             this.button2.Size = new System.Drawing.Size(130, 40);
             this.button2.TabIndex = 21;
-            this.button2.Text = "Apply DNS Server";
+            this.button2.Text = "Apply DNS";
+            this.button2.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
             this.button2.UseVisualStyleBackColor = true;
             this.button2.Click += new System.EventHandler(this.button2_Click);
-            // 
-            // linkLabel1
-            // 
-            this.linkLabel1.AutoSize = true;
-            this.linkLabel1.LinkColor = System.Drawing.Color.FromArgb(((int)(((byte)(241)))), ((int)(((byte)(248)))), ((int)(((byte)(233)))));
-            this.linkLabel1.Location = new System.Drawing.Point(662, 5);
-            this.linkLabel1.Name = "linkLabel1";
-            this.linkLabel1.Size = new System.Drawing.Size(270, 17);
-            this.linkLabel1.TabIndex = 19;
-            this.linkLabel1.TabStop = true;
-            this.linkLabel1.Text = "https://yasserdivar.ir/best-dns-configuration/";
-            this.linkLabel1.LinkClicked += new System.Windows.Forms.LinkLabelLinkClickedEventHandler(this.linkLabel1_LinkClicked);
             // 
             // label3
             // 
             this.label3.AutoSize = true;
-            this.label3.ForeColor = System.Drawing.Color.White;
+            this.label3.ForeColor = System.Drawing.Color.Black;
             this.label3.Location = new System.Drawing.Point(752, 73);
             this.label3.Name = "label3";
             this.label3.Size = new System.Drawing.Size(106, 17);
@@ -220,7 +258,7 @@
             // label2
             // 
             this.label2.AutoSize = true;
-            this.label2.ForeColor = System.Drawing.Color.White;
+            this.label2.ForeColor = System.Drawing.Color.Black;
             this.label2.Location = new System.Drawing.Point(533, 73);
             this.label2.Name = "label2";
             this.label2.Size = new System.Drawing.Size(93, 17);
@@ -230,7 +268,7 @@
             // label1
             // 
             this.label1.AutoSize = true;
-            this.label1.ForeColor = System.Drawing.Color.White;
+            this.label1.ForeColor = System.Drawing.Color.Black;
             this.label1.Location = new System.Drawing.Point(531, 14);
             this.label1.Name = "label1";
             this.label1.Size = new System.Drawing.Size(122, 17);
@@ -272,14 +310,30 @@
             // 
             // Check_DNS
             // 
+            this.Check_DNS.ImageAlign = System.Drawing.ContentAlignment.MiddleRight;
+            this.Check_DNS.ImageIndex = 2;
+            this.Check_DNS.ImageList = this.imageList1;
             this.Check_DNS.Location = new System.Drawing.Point(13, 23);
             this.Check_DNS.Margin = new System.Windows.Forms.Padding(4, 3, 4, 3);
             this.Check_DNS.Name = "Check_DNS";
             this.Check_DNS.Size = new System.Drawing.Size(130, 40);
             this.Check_DNS.TabIndex = 12;
-            this.Check_DNS.Text = "Check DNS List";
+            this.Check_DNS.Text = "Check List";
+            this.Check_DNS.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
             this.Check_DNS.UseVisualStyleBackColor = true;
             this.Check_DNS.Click += new System.EventHandler(this.Check_DNS_Click);
+            // 
+            // linkLabel1
+            // 
+            this.linkLabel1.AutoSize = true;
+            this.linkLabel1.LinkColor = System.Drawing.Color.FromArgb(((int)(((byte)(241)))), ((int)(((byte)(248)))), ((int)(((byte)(233)))));
+            this.linkLabel1.Location = new System.Drawing.Point(662, 5);
+            this.linkLabel1.Name = "linkLabel1";
+            this.linkLabel1.Size = new System.Drawing.Size(270, 17);
+            this.linkLabel1.TabIndex = 19;
+            this.linkLabel1.TabStop = true;
+            this.linkLabel1.Text = "https://yasserdivar.ir/best-dns-configuration/";
+            this.linkLabel1.LinkClicked += new System.Windows.Forms.LinkLabelLinkClickedEventHandler(this.linkLabel1_LinkClicked);
             // 
             // panel2
             // 
@@ -292,6 +346,28 @@
             this.panel2.Name = "panel2";
             this.panel2.Size = new System.Drawing.Size(940, 72);
             this.panel2.TabIndex = 14;
+            // 
+            // panel3
+            // 
+            this.panel3.BackColor = System.Drawing.Color.MediumSeaGreen;
+            this.panel3.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+            this.panel3.Controls.Add(this.lbl_status);
+            this.panel3.Controls.Add(this.linkLabel1);
+            this.panel3.Dock = System.Windows.Forms.DockStyle.Bottom;
+            this.panel3.Location = new System.Drawing.Point(0, 43);
+            this.panel3.Name = "panel3";
+            this.panel3.Size = new System.Drawing.Size(940, 29);
+            this.panel3.TabIndex = 9;
+            // 
+            // lbl_status
+            // 
+            this.lbl_status.AutoSize = true;
+            this.lbl_status.Location = new System.Drawing.Point(13, 5);
+            this.lbl_status.Name = "lbl_status";
+            this.lbl_status.Size = new System.Drawing.Size(618, 17);
+            this.lbl_status.TabIndex = 0;
+            this.lbl_status.Text = "Welcome Dear User to DNS Tester By YasserDivar.ir - we made it for you! - thanks " +
+    "for using New Version";
             // 
             // textBox1
             // 
@@ -312,39 +388,6 @@
             this.progressBar1.Name = "progressBar1";
             this.progressBar1.Size = new System.Drawing.Size(799, 25);
             this.progressBar1.TabIndex = 7;
-            // 
-            // panel3
-            // 
-            this.panel3.BackColor = System.Drawing.Color.MediumSeaGreen;
-            this.panel3.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
-            this.panel3.Controls.Add(this.lbl_status);
-            this.panel3.Controls.Add(this.linkLabel1);
-            this.panel3.Dock = System.Windows.Forms.DockStyle.Bottom;
-            this.panel3.Location = new System.Drawing.Point(0, 43);
-            this.panel3.Name = "panel3";
-            this.panel3.Size = new System.Drawing.Size(940, 29);
-            this.panel3.TabIndex = 9;
-            // 
-            // lbl_status
-            // 
-            this.lbl_status.AutoSize = true;
-            this.lbl_status.Location = new System.Drawing.Point(13, 5);
-            this.lbl_status.Name = "lbl_status";
-            this.lbl_status.Size = new System.Drawing.Size(63, 17);
-            this.lbl_status.TabIndex = 0;
-            this.lbl_status.Text = "Status : ...";
-            // 
-            // button3
-            // 
-            this.button3.FlatStyle = System.Windows.Forms.FlatStyle.System;
-            this.button3.Location = new System.Drawing.Point(379, 23);
-            this.button3.Margin = new System.Windows.Forms.Padding(4, 3, 4, 3);
-            this.button3.Name = "button3";
-            this.button3.Size = new System.Drawing.Size(130, 40);
-            this.button3.TabIndex = 23;
-            this.button3.Text = "About DNS Tester";
-            this.button3.UseVisualStyleBackColor = true;
-            this.button3.Click += new System.EventHandler(this.button3_Click);
             // 
             // Form1
             // 
@@ -403,6 +446,8 @@
         private System.Windows.Forms.Panel panel3;
         private System.Windows.Forms.Label lbl_status;
         private System.Windows.Forms.Button button3;
+        private System.Windows.Forms.Button button4;
+        private System.Windows.Forms.ImageList imageList1;
     }
 }
 

@@ -11,7 +11,8 @@ namespace WindowsFormsApp2
     public partial class Form2 : Form
     {
         private string download_link = null;
-        public string currentVersion = "1.0.0";
+        public string currentVersion = "3.1.0";
+
         public Form2()
         {
             InitializeComponent();
@@ -57,7 +58,6 @@ namespace WindowsFormsApp2
             {
                 XmlDocument xmlDoc = new XmlDocument();
                 xmlDoc.Load(tempVersionFile);
-
 
                 string latestVersion = $"{xmlDoc.SelectSingleNode("//currentVersion/major").InnerText}.{xmlDoc.SelectSingleNode("//currentVersion/minor").InnerText}.{xmlDoc.SelectSingleNode("//currentVersion/build").InnerText}";
                 string downloadLink = xmlDoc.SelectSingleNode("//path").InnerText;
