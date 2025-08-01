@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Diagnostics;
 using System.IO;
 using System.Management;
 using System.Net.Http;
@@ -542,23 +543,52 @@ namespace WindowsFormsApp2
         {
             // Randomly select a row for DNS1 from the top 20 rows
             Random random = new Random();
-            int randomIndexDns1 = random.Next(0, 20);
-            string dns1 = listViewResults.Items[randomIndexDns1].SubItems[1].Text;
 
-            // Randomly select a row for DNS2 from the top 20 rows (different from DNS1)
-            int randomIndexDns2 = random.Next(0, 20);
-            while (randomIndexDns2 == randomIndexDns1)
+            try
             {
-                randomIndexDns2 = random.Next(0, 20);
+                if (listViewResults.Items.Count < 20)
+                    return;
+
+                int randomIndexDns1 = random.Next(0, 20);
+                int randomIndexDns2 = random.Next(0, 20);
+
+                while (randomIndexDns2 == randomIndexDns1)
+                {
+                    randomIndexDns2 = random.Next(0, 20);
+                }
+
+                string dns1 = listViewResults.Items[randomIndexDns1].SubItems[1].Text;
+                string dns2 = listViewResults.Items[randomIndexDns2].SubItems[2].Text;
+
+                textBoxDns1.Text = dns1;
+                textBoxDns2.Text = string.IsNullOrEmpty(dns2) ? "1.1.1.1" : dns2;
             }
-            string dns2 = listViewResults.Items[randomIndexDns2].SubItems[2].Text;
-
-            // Display the DNS values in both text boxes
-            textBoxDns1.Text = dns1;
-            textBoxDns2.Text = dns2;
-            if (textBoxDns2.Text == "")
+            catch (Exception)
             {
-                textBoxDns2.Text = "1.1.1.1";
+                // بدون هیچ واکنشی خروج از بلوک
+            }
+        }
+
+        private void button5_Click(object sender, EventArgs e)
+        {
+            // Start the process to run ipconfig /flushdns
+            Process process = new Process();
+            ProcessStartInfo startInfo = new ProcessStartInfo();
+            startInfo.FileName = "ipconfig";
+            startInfo.Arguments = "/flushdns";
+            startInfo.Verb = "runas"; // Request UAC elevation (required for flushing DNS)
+            startInfo.UseShellExecute = true; // Required when using 'runas'
+
+            process.StartInfo = startInfo;
+            process.Start();
+            process.WaitForExit();
+            if (process.ExitCode == 0)
+            {
+                lbl_status.Text = "DNS cache flushed successfully.";
+            }
+            else
+            {
+                lbl_status.Text = "Failed to flush DNS cache.";
             }
         }
     }

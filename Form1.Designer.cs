@@ -40,8 +40,9 @@
             this.toolStripMenuItem4 = new System.Windows.Forms.ToolStripMenuItem();
             this.toolStripMenuItem5 = new System.Windows.Forms.ToolStripMenuItem();
             this.panel1 = new System.Windows.Forms.Panel();
-            this.button4 = new System.Windows.Forms.Button();
+            this.button5 = new System.Windows.Forms.Button();
             this.imageList1 = new System.Windows.Forms.ImageList(this.components);
+            this.button4 = new System.Windows.Forms.Button();
             this.button3 = new System.Windows.Forms.Button();
             this.button1 = new System.Windows.Forms.Button();
             this.button2 = new System.Windows.Forms.Button();
@@ -154,7 +155,7 @@
             // 
             // panel1
             // 
-            this.panel1.BackColor = System.Drawing.SystemColors.Control;
+            this.panel1.Controls.Add(this.button5);
             this.panel1.Controls.Add(this.button4);
             this.panel1.Controls.Add(this.button3);
             this.panel1.Controls.Add(this.button1);
@@ -174,6 +175,31 @@
             this.panel1.TabIndex = 13;
             this.panel1.Paint += new System.Windows.Forms.PaintEventHandler(this.panel1_Paint);
             // 
+            // button5
+            // 
+            this.button5.ImageAlign = System.Drawing.ContentAlignment.MiddleRight;
+            this.button5.ImageIndex = 5;
+            this.button5.ImageList = this.imageList1;
+            this.button5.Location = new System.Drawing.Point(200, 83);
+            this.button5.Name = "button5";
+            this.button5.Size = new System.Drawing.Size(130, 40);
+            this.button5.TabIndex = 25;
+            this.button5.Text = "Flush DNS";
+            this.button5.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            this.button5.UseVisualStyleBackColor = true;
+            this.button5.Click += new System.EventHandler(this.button5_Click);
+            // 
+            // imageList1
+            // 
+            this.imageList1.ImageStream = ((System.Windows.Forms.ImageListStreamer)(resources.GetObject("imageList1.ImageStream")));
+            this.imageList1.TransparentColor = System.Drawing.Color.Transparent;
+            this.imageList1.Images.SetKeyName(0, "checklist.png");
+            this.imageList1.Images.SetKeyName(1, "checkmark.png");
+            this.imageList1.Images.SetKeyName(2, "installing-updates.png");
+            this.imageList1.Images.SetKeyName(3, "profile.png");
+            this.imageList1.Images.SetKeyName(4, "sync-settings.png");
+            this.imageList1.Images.SetKeyName(5, "worldwide-delivery.png");
+            // 
             // button4
             // 
             this.button4.Enabled = false;
@@ -189,20 +215,10 @@
             this.button4.UseVisualStyleBackColor = true;
             this.button4.Click += new System.EventHandler(this.button4_Click);
             // 
-            // imageList1
-            // 
-            this.imageList1.ImageStream = ((System.Windows.Forms.ImageListStreamer)(resources.GetObject("imageList1.ImageStream")));
-            this.imageList1.TransparentColor = System.Drawing.Color.Transparent;
-            this.imageList1.Images.SetKeyName(0, "icons8-bust-in-silhouette-48.png");
-            this.imageList1.Images.SetKeyName(1, "icons8-check-48 (1).png");
-            this.imageList1.Images.SetKeyName(2, "icons8-check-48.png");
-            this.imageList1.Images.SetKeyName(3, "icons8-counterclockwise-arrows-48.png");
-            this.imageList1.Images.SetKeyName(4, "icons8-random-48.png");
-            // 
             // button3
             // 
             this.button3.ImageAlign = System.Drawing.ContentAlignment.MiddleRight;
-            this.button3.ImageIndex = 0;
+            this.button3.ImageIndex = 3;
             this.button3.ImageList = this.imageList1;
             this.button3.Location = new System.Drawing.Point(379, 23);
             this.button3.Margin = new System.Windows.Forms.Padding(4, 3, 4, 3);
@@ -217,7 +233,7 @@
             // button1
             // 
             this.button1.ImageAlign = System.Drawing.ContentAlignment.MiddleRight;
-            this.button1.ImageIndex = 3;
+            this.button1.ImageIndex = 2;
             this.button1.ImageList = this.imageList1;
             this.button1.Location = new System.Drawing.Point(13, 83);
             this.button1.Margin = new System.Windows.Forms.Padding(4, 3, 4, 3);
@@ -311,7 +327,7 @@
             // Check_DNS
             // 
             this.Check_DNS.ImageAlign = System.Drawing.ContentAlignment.MiddleRight;
-            this.Check_DNS.ImageIndex = 2;
+            this.Check_DNS.ImageIndex = 0;
             this.Check_DNS.ImageList = this.imageList1;
             this.Check_DNS.Location = new System.Drawing.Point(13, 23);
             this.Check_DNS.Margin = new System.Windows.Forms.Padding(4, 3, 4, 3);
@@ -378,7 +394,7 @@
             this.textBox1.ReadOnly = true;
             this.textBox1.Size = new System.Drawing.Size(122, 25);
             this.textBox1.TabIndex = 8;
-            this.textBox1.Text = "items count :";
+            this.textBox1.Text = "items :";
             this.textBox1.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
             // 
             // progressBar1
@@ -448,6 +464,7 @@
         private System.Windows.Forms.Button button3;
         private System.Windows.Forms.Button button4;
         private System.Windows.Forms.ImageList imageList1;
+        private System.Windows.Forms.Button button5;
     }
 }
 

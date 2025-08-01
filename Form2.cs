@@ -11,7 +11,7 @@ namespace WindowsFormsApp2
     public partial class Form2 : Form
     {
         private string download_link = null;
-        public string currentVersion = "3.1.0";
+        public string currentVersion = "4.0.0";
 
         public Form2()
         {
@@ -109,6 +109,10 @@ namespace WindowsFormsApp2
             download_link = null;
 
             labelUpdateState.Text = "Update check completed.";
+        }
+
+        private void panel3_Paint(object sender, PaintEventArgs e)
+        {
         }
     }
 }
